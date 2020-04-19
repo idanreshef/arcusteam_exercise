@@ -33,6 +33,6 @@ existing file path or other arguments in the expected structure and
 format (the mapper should be a valid dict, threshold should be a number etc).
 - You SHOULDN'T add any quotes to your arguments.
 - Pressing `help` won't have impact on the attempts number.
-- In order to exit the program just press CTRL + C and than ENTER.
+- In order to exit the program just press CTRL + C.
 
 For any other information please contact Idan Reshef.

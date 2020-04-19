@@ -14,8 +14,6 @@ def execute():
         print(PrintUtils.main_screen_format(Logs.SEE_YOU_LATER_LOG))
     except Exception as err:
         print(PrintUtils.error_format(Logs.EXECUTION_FAILED_ERROR.format(err)))
-        raise err
-
 
 
 if __name__ == '__main__':

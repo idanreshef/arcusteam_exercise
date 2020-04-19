@@ -13,7 +13,7 @@ class ArgParser:
         self.arguments = dict()
 
     def parse_args(self):
-        """This method manage the entire section in front of the user"""
+        """This method manages the entire section in front of the user"""
         is_valid = self._general_argument_parser(UIConsts.MANDATORY)
         if is_valid:
             is_valid = self._general_argument_parser(self.arguments[ArgsConsts.MODE])
@@ -24,7 +24,7 @@ class ArgParser:
 
     def _general_argument_parser(self, args_group):
         """This method handles different groups of arguments parsing.
-        It provide any group three attempts to get the valid arguments from the user."""
+        It provides any args group three attempts to get the valid arguments from the user."""
         parser_handler = {UIConsts.MANDATORY: self._parse_mandatory_arguments,
                           UIConsts.BASIC_MODE: self._parse_basic_mode_arguments,
                           UIConsts.REGEX_MODE: self._parse_regex_mode_arguments,
@@ -39,7 +39,7 @@ class ArgParser:
         return False
 
     def _parse_mandatory_arguments(self):
-        """This method parses the basic arguments that are relevant for
+        """This method parses the two basic arguments that are relevant for
         all of the modes: The mode and the file path"""
         mode = self._present_option_to_choose(UIConsts.MODE, UIConsts.MODE_OPTIONS, UIConsts.EXPLAIN_MODES)
         if mode is None:  # Invalid value
@@ -75,7 +75,7 @@ class ArgParser:
     def _parse_regex_mode_arguments(self):
         """
         This method parses the relevant arguments for the regex mode.
-        The regex pattern must be in the following structure: 'relevant-bytes-prefixXXXX'. E.g: \x01XX
+        The regex pattern must be in the following structure: 'relevant-byte-prefixXXXX'. E.g: \x01XX
         (Requested bytes prefix and than X symbols in order to get the required structure and length)
         """
         regex_pattern = self._present_option_to_choose(ArgsConsts.REGEX_PATTERN)
@@ -87,11 +87,11 @@ class ArgParser:
 
     def _present_option_to_choose(self, title, options_list=None, explanation_dict=None):
         """
-        This method present the current arguments that need to be retrieved by the user.
-        :param title: The input request that will displayed in the CLI. E.g: `file path`
+        This method presents the current arguments that need to be retrieved by the user.
+        :param title: The input request that will displayed on the CLI. E.g: `file path`
         :param options_list: A list with options to display
-        :param explanation_dict: A dictionary with message to present after each option
-        :rtype: str with the received input, in case of an error, None value will be returned
+        :param explanation_dict: A dictionary with message per option to present
+        :rtype: str with the received input, in case of an error or help request None value will be returned
         """
         self._print_welcome_message()
         user_input = self._print_selections_and_get_input(title, options_list, explanation_dict)
@@ -101,8 +101,8 @@ class ArgParser:
         return user_input
 
     def _handle_help_request(self):
-        """This method handles help request. It presenting the help file and waits for the
-        user's response."""
+        """This method handles help request. It presents the help file and waits for the
+        user's response (Enter to continue or Ctrl + C to exit)."""
         os.system('clear')
         self.num_of_attempts += 1  # This is not a failed attempt but we'll restart the process
         with open(UIConsts.HELP_FILE_PATH) as f:
@@ -124,7 +124,7 @@ class ArgParser:
     def _print_selections_and_get_input(self, title, option_list=None, explanation_dict=None):
         """
         This method responsible for every interaction with the user in order to get the arguments.
-        It support both closed options (choose from a limited list or raw input)
+        It support both closed options (choice from a limited list) and raw input
         :param title: The name of the arguments that is being retrieved
         :param option_list: A list with string options to choose (E.g: ['opt1', 'opt2', 'opt3']
         :param explanation_dict: A dictionary that maps an explanation for every option

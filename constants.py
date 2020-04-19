@@ -1,3 +1,5 @@
+import os
+
 
 class ArgsConsts:
     MODE = 'mode'
@@ -10,8 +12,13 @@ class ArgsConsts:
 
 
 class UIConsts:
-    MAIN_SCREEN_FILE_PATH = 'resources/main_screen.txt'
-    HELP_FILE_PATH = 'resources/help_screen.txt'
+    RESOURCES_DIR = 'resources'
+    MAIN_SCREEN_FILE_NAME = 'main_screen.txt'
+    HELP_FILE_NAME = 'help_screen.txt'
+    RESOURCES_PATH = os.path.realpath(RESOURCES_DIR)
+    MAIN_SCREEN_FILE_PATH = os.path.join(os.path.dirname(__file__), RESOURCES_DIR, MAIN_SCREEN_FILE_NAME)
+    HELP_FILE_PATH = os.path.join(os.path.dirname(__file__), RESOURCES_DIR, HELP_FILE_NAME)
+
     HELP = 'help'
     MODE = 'mode'
     MANDATORY = 'Mandatory Arguments'
