@@ -1,0 +1,38 @@
+~~~~~~~~~~~~~~~~~~~~~ Help ~~~~~~~~~~~~~~~~~~~~~
+
+This application gets arguments from the user via a CLI
+and returns an output according to the user's mode
+choice and other arguments.
+
+********************* Modes *********************
+1. Basic mode - In this mode, the system gets a path for a
+binary file and a threshold (number) and return a json that
+every record represents a binary sequence that repeating in
+a specific section that it's length is bigger than the threshold.
+E.g:{'range': (1008, 1038), 'size': 30, 'repeating_byte': b'\x00'}.
+
+2. Regex Mode - In this mode, the system gets an expected bytes
+format and structure. The current version supports one bytes as a
+prefix and as many bytes as you want in the structure.
+E.g: If I want to get all of the 3 bytes sequences that starts with
+'F' - the input will be 'FXX' (without the quote marks).
+
+3. Custom Mode - In this mode, the user provides a dictionary with
+specific bytes to look for in the file and their a mapper to some
+other string. The app will return a dictionary with this string and
+the amount of appearances of it's original key in the file.
+Please note that all of the keys must be valid hex strings and that
+it should include any new line (you can use paste - but make sure
+that everything is on the same row!)
+
+********************* CLI Instruction *********************
+- The are three attempts to provide a valid input in every phase
+(phase 1 - mode + file, phase 2 - specific arguments per mode).
+A valid input is a numeric option that can be found in the options list,
+existing file path or other arguments in the expected structure and
+format (the mapper should be a valid dict, threshold should be a number etc).
+- You SHOULDN'T add any quotes to your arguments.
+- Pressing `help` won't have impact on the attempts number.
+- In order to exit the program just press CTRL + C and than ENTER.
+
+For any other information please contact Idan Reshef.
