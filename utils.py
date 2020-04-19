@@ -31,7 +31,7 @@ class PrintUtils:
 
 
 class ValidationUtil(object):
-    """This class contain all of the arguments validators"""
+    """This class contain all of the arguments' validators"""
 
     @classmethod
     def _handle_invalid_arguments(cls, log_to_print):
